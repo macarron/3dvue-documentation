@@ -143,10 +143,69 @@ document.addEventListener("DOMContentLoaded", () => {
 
 #### API - ACTION
 ```
-API_3DVUE.EVENT.LOAD_COMPLETE
+API_3DVUE.EVENT.GET_MODEL_DATA
 ```
-Demande à l'iframe de changer un ou plusieurs materiaux.
+Demande à l'iframe de renvoyer les données du model affiché. Il faut attendre que le modèle soit chargé pour effectuer cette requête.
 
 ```
-API_3DVUE.EVENT.LOAD_COMPLETE
+//quand la page est chargée
+document.addEventListener("DOMContentLoaded", () => {
+  //on écoute si un "message" arrive
+  window.addEventListener("message", function(event) {
+    //si le type de message est API_3DVUE.EVENT.LOAD_COMPLETE...
+    if(event.data.event === API_3DVUE.EVENT.LOAD_COMPLETE) {
+      let data = {
+          action:API_3DVUE.ACTION.GET_MODEL_DATA,
+      }
+      //récupère l'element html de l'iframe par son id
+      const iframeWindow = document.getElementById("iframe").contentWindow;
+      //envoi la requête
+      iframeWindow.postMessage(data, "*");
+    }
+  });
+});
 ```
+
+
+```
+API_3DVUE.EVENT.CHANGE_MATERIAL
+```
+Effectue une requête pour changer dynamiquement les materiaux de l'objet affiché.  Il faut attendre que le modèle soit chargé pour effectuer cette requête.
+
+```
+//quand la page est chargée
+document.addEventListener("DOMContentLoaded", () => {
+  //on écoute si un "message" arrive
+  window.addEventListener("message", function(event) {
+    //si le type de message est API_3DVUE.EVENT.LOAD_COMPLETE...
+    if(event.data.event === API_3DVUE.EVENT.LOAD_COMPLETE) {
+      let data = {
+          action:API_3DVUE.ACTION.CHANGE_MATERIAL,
+          materials:{
+            "mesh_001":"mat_002",
+            "mesh_002":"mat_002"
+          }
+      }
+      //récupère l'element html de l'iframe par son id
+      const iframeWindow = document.getElementById("iframe").contentWindow;
+      //envoi la requête
+      iframeWindow.postMessage(data, "*");
+    }
+  });
+});
+```
+
+```
+API_3DVUE.EVENT.START_RENDERER
+```
+Effectue une requête pour redémarrer le rendu après une pause.
+
+```
+API_3DVUE.EVENT.PAUSE_RENDERER
+```
+Effectue une requête pour arrêter le rendu.
+
+```
+API_3DVUE.EVENT.RESET_CAMERA
+```
+Effectue une requête pour remettre la camera à sa position d'origine.
