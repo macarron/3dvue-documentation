@@ -1,4 +1,6 @@
-![Logo 3Dvue.](https://demo.3dvue.fr/project/logo.png)
+<p align="center">
+  <img src="https://demo.3dvue.fr/project/logo.png" width="250">
+</p>
 
 # 3dvue.fr
 3dvue.fr est une plateforme web de visualisation de modèle 3D en ligne.
@@ -41,7 +43,7 @@ let API_3DVUE = {
 
 #### API - ACTION
 ```
-API_3DVUE.EVENT.GET_MODEL_DATA
+API_3DVUE.ACTION.GET_MODEL_DATA
 ```
 Demande à l'iframe de renvoyer les données du model affiché. Il faut attendre que le modèle soit chargé pour effectuer cette requête.
 
@@ -66,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 ```
-API_3DVUE.EVENT.CHANGE_MATERIAL
+API_3DVUE.ACTION.CHANGE_MATERIAL
 ```
 Effectue une requête pour changer dynamiquement les materiaux de l'objet affiché.  Il faut attendre que le modèle soit chargé pour effectuer cette requête.
 
@@ -94,17 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
 ```
 
 ```
-API_3DVUE.EVENT.START_RENDERER
+API_3DVUE.ACTION.START_RENDERER
 ```
 Effectue une requête pour redémarrer le rendu après une pause.
 
 ```
-API_3DVUE.EVENT.PAUSE_RENDERER
+API_3DVUE.ACTION.PAUSE_RENDERER
 ```
 Effectue une requête pour arrêter le rendu.
 
 ```
-API_3DVUE.EVENT.RESET_CAMERA
+API_3DVUE.ACTION.RESET_CAMERA
 ```
 Effectue une requête pour remettre la camera à sa position d'origine.
 
